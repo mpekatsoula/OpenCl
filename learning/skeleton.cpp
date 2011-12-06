@@ -21,7 +21,7 @@ char* cSourceCL = NULL;         // Buffer to hold source for compilation
 const char* cExecutableName = NULL;
 
 // Clean up function
-void Cleanup (int argc, char **argv);
+void Cleanup ();
 
 int main (int argc, char *argv[]) {
 
@@ -42,7 +42,7 @@ int main (int argc, char *argv[]) {
   if (ciErr1 != CL_SUCCESS)
   {
     printf("Error in clGetPlatformIDs.\n");
-    Cleanup(argc, argv);
+    Cleanup();
   }
 
   // Get the devices
@@ -50,7 +50,7 @@ int main (int argc, char *argv[]) {
   if (ciErr1 != CL_SUCCESS)
   {
     printf("Error in clGetDeviceIDs.\n");
-    Cleanup(argc, argv);
+    Cleanup();
   }
 
   // Create the context
@@ -58,7 +58,7 @@ int main (int argc, char *argv[]) {
   if (ciErr1 != CL_SUCCESS)
   {
     printf("Error in clCreateContext.\n");
-    Cleanup(argc, argv);
+    Cleanup();
   }
 
   // Create a command-queue
@@ -66,7 +66,7 @@ int main (int argc, char *argv[]) {
   if (ciErr1 != CL_SUCCESS)
   {
     printf("Error in clCreateCommandQueue.\n");
-    Cleanup(argc, argv);
+    Cleanup();
   }
 
   // Allocate the OpenCL buffer memory objects for source and result on the device GMEM
@@ -85,7 +85,7 @@ int main (int argc, char *argv[]) {
   if (ciErr1 != CL_SUCCESS)
   {
     printf("Error in clCreateProgramWithSource.\n");
-    Cleanup(argc, argv);
+    Cleanup();
   }
 
   // Build the program with 'mad' Optimization option
@@ -98,11 +98,11 @@ int main (int argc, char *argv[]) {
   }
 
   // Create the kernel
-  ckKernel = clCreateKernel(cpProgram, "VectorAdd", &ciErr1);
+  ckKernel = clCreateKernel(cpProgram, argv[2], &ciErr1);
   if (ciErr1 != CL_SUCCESS)
   {
     printf("Error in clCreateKernel.\n");
-    Cleanup(argc, argv);
+    Cleanup();
   }
 
   // Set the Argument values and write data to GPU
@@ -118,7 +118,7 @@ int main (int argc, char *argv[]) {
   if (ciErr1 != CL_SUCCESS)
   {
     printf("Error in clEnqueueNDRangeKernel.\n");
-    Cleanup(argc, argv);
+    Cleanup();
   }
 
   // Copy results from GPU
@@ -128,14 +128,14 @@ int main (int argc, char *argv[]) {
 
 
   // Cleanup and leave
-  Cleanup (argc, argv);
+  Cleanup ();
 }
 
 
 
 
 
-void Cleanup (int argc, char **argv)
+void Cleanup ()
 {
   // Cleanup allocated objects
   if(cPathAndName)free(cPathAndName);
