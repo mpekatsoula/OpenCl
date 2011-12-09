@@ -1,0 +1,17 @@
+.version 1.4
+.target sm_10, map_f64_to_f32
+
+
+.entry testing (
+  .param .u64 mynum)
+{
+
+  .reg .u64 %r;
+  .reg .u64 %i;
+  ld.param.u64 %r,[mynum];
+  ld.global.u64 %i,[%r];
+  add.u64 %i,%i,3;
+  st.global.u64 [%r+0],%i;
+  exit;
+
+}
