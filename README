@@ -1,0 +1,10 @@
+Here you will fing code relative with OpenCL, CUDA and PTX. 
+
+get_ptx_code_opencl: Takes as an input an OpenCl program and generates the PTX code. To use, just include the library
+and call the function  Getptxcode(cl_program cpProgram);
+
+opencl_gen_ptx_on_C_cuda: A simple example of running PTX code, gennerated by OpenCl, with the CUDA Driver API.
+
+ptx_with_C_cuda: Again running PTX code with CUDA Driver API, this time gennerated by a C CUDA program.
+
+ptx_with_opencl: Runnng PTX code via OpenCL.
