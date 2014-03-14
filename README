@@ -1,4 +1,4 @@
-Here you will fing code relative with OpenCL, CUDA and PTX. 
+Here you will find sample code relative with OpenCL, CUDA and PTX. No serious applications here, only for learing.
 
 get_ptx_code_opencl: Takes as an input an OpenCl program and generates the PTX code. To use, just include the library
 and call the function  Getptxcode(cl_program cpProgram);
